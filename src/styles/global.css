@@ -13,45 +13,47 @@
     "Helvetica Neue", Arial, sans-serif;
 }
 
-html {
-  background-color: var(--color-cream);
-  color: var(--color-charcoal);
-  font-family: var(--font-sans);
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@layer base {
+  html {
+    background-color: var(--color-cream);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-body {
-  font-size: 1.0625rem;
-  line-height: 1.7;
-}
+  body {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+  }
 
-h1, h2, h3, h4 {
-  color: var(--color-ink);
-  font-weight: 700;
-  letter-spacing: -0.015em;
-}
+  h1, h2, h3, h4 {
+    color: var(--color-ink);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
 
-h1 { font-size: 2.5rem; line-height: 1.15; }
-h2 { font-size: 1.75rem; line-height: 1.25; margin-top: 2.5rem; }
-h3 { font-size: 1.25rem; line-height: 1.3; margin-top: 1.75rem; }
+  h1 { font-size: 2.5rem; line-height: 1.15; }
+  h2 { font-size: 1.75rem; line-height: 1.25; margin-top: 2.5rem; }
+  h3 { font-size: 1.25rem; line-height: 1.3; margin-top: 1.75rem; }
 
-p { margin-top: 1rem; }
-p:first-child { margin-top: 0; }
+  p { margin-top: 1rem; }
+  p:first-child { margin-top: 0; }
 
-a {
-  color: var(--color-ink);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
-  transition: text-decoration-thickness 120ms ease;
-}
-a:hover { text-decoration-thickness: 2px; }
+  a {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-thickness 120ms ease;
+  }
+  a:hover { text-decoration-thickness: 2px; }
 
-main { min-height: 60vh; }
+  main { min-height: 60vh; }
 
-::selection {
-  background-color: var(--color-ink);
-  color: var(--color-cream);
+  ::selection {
+    background-color: var(--color-ink);
+    color: var(--color-cream);
+  }
 }
