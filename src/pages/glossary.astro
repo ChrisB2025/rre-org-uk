@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import glossaryData from '../data/glossary.json';
+
+interface Entry {
+  term: string;
+  definition: string;
+  todo: boolean;
+}
+
+const entries: Entry[] = glossaryData.entries;
+const note: string = glossaryData.note;
+
+const grouped = entries.reduce<Record<string, Entry[]>>((acc, entry) => {
+  const letter = entry.term[0].toUpperCase();
+  (acc[letter] ||= []).push(entry);
+  return acc;
+}, {});
+
+const letters = Object.keys(grouped).sort();
+---
+
+<BaseLayout
+  title="Glossary"
+  description="Glossary of Modern Monetary Theory and Real Resource Economics terms."
+>
+  <h1>Glossary</h1>
+
+  <p class="mt-6 text-sm text-[color:var(--color-charcoal)]/80">
+    {note}
+  </p>
+
+  <nav aria-label="Jump to letter" class="mt-8 border-y border-[color:var(--color-rule)] py-3">
+    <ul class="flex flex-wrap gap-x-3 gap-y-1 text-sm tabular-nums">
+      {letters.map((letter) => (
+        <li>
+          <a href={`#letter-${letter}`} class="no-underline hover:underline font-medium">
+            {letter}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+
+  <div class="mt-10 space-y-10">
+    {letters.map((letter) => (
+      <section id={`letter-${letter}`} class="scroll-mt-6">
+        <h2 class="!mt-0 text-[color:var(--color-charcoal)]/50 font-serif">{letter}</h2>
+        <dl class="mt-4 space-y-5">
+          {grouped[letter].map((entry) => (
+            <div>
+              <dt class="font-bold text-[color:var(--color-ink)]">
+                {entry.term}
+              </dt>
+              <dd class:list={[
+                'mt-1',
+                entry.todo && 'text-[color:var(--color-charcoal)]/60 italic',
+              ]}>
+                {entry.definition}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    ))}
+  </div>
+</BaseLayout>

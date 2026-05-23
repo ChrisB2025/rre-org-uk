@@ -1,0 +1,40 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Real Resource Economics',
+  description = 'Real Resource Economics — the work of Stephen Laughton, author of The Money Sham (Lola Books).',
+} = Astro.props;
+
+const fullTitle =
+  title === 'Real Resource Economics' ? title : `${title} | Real Resource Economics`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <Nav />
+    <main class="mx-auto max-w-2xl px-6 py-12 sm:py-16">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "rre-org-uk",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Real Resource Economics — Stephen Laughton's author and book site",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "start": "serve dist --listen tcp://0.0.0.0:${PORT:-3000}"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "@fontsource/inter": "^5.1.0",
+    "@tailwindcss/vite": "^4.0.0",
+    "astro": "^5.0.0",
+    "serve": "^14.2.4",
+    "tailwindcss": "^4.0.0"
+  }
+}

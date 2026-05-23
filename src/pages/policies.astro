@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const policies = Array.from({ length: 7 }, (_, i) => ({
+  number: i + 1,
+  title: `Placeholder Title for Policy ${i + 1}`,
+  description:
+    'Two- to three-sentence placeholder description of this policy proposal. Steve will provide the full text drawn from the relevant chapter of The Money Sham. The placeholder exists to demonstrate the rhythm and visual weight of each entry.',
+}));
+---
+
+<BaseLayout
+  title="The 7 Policies"
+  description="Seven policy proposals drawn from The Money Sham by Stephen Laughton."
+>
+  <h1>The 7 Policies</h1>
+
+  <p class="mt-6 text-lg">
+    These seven policy proposals are drawn from <em>The Money Sham</em>.
+  </p>
+
+  <div class="mt-10 space-y-10">
+    {policies.map(({ number, title, description }) => (
+      <section>
+        <h2 class="!mt-0">
+          <span class="text-[color:var(--color-charcoal)]/50 tabular-nums">{String(number).padStart(2, '0')}</span>
+          &nbsp;&nbsp;{title}
+        </h2>
+        <p>{description}</p>
+      </section>
+    ))}
+  </div>
+
+  <hr class="my-12 border-[color:var(--color-rule)]" />
+
+  <p class="text-sm text-[color:var(--color-charcoal)]/80">
+    For full analysis of each policy, see <em>The Money Sham</em>.
+  </p>
+</BaseLayout>

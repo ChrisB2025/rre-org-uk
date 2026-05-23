@@ -1,0 +1,26 @@
+---
+interface Props {
+  href: string;
+  external?: boolean;
+  variant?: 'solid' | 'outline';
+}
+
+const { href, external = false, variant = 'solid' } = Astro.props;
+
+const base =
+  'inline-block rounded-sm px-5 py-2.5 text-sm font-medium no-underline transition-colors';
+const styles = {
+  solid:
+    'bg-[color:var(--color-ink)] text-[color:var(--color-cream)] hover:bg-black',
+  outline:
+    'border border-[color:var(--color-ink)] text-[color:var(--color-ink)] hover:bg-[color:var(--color-ink)] hover:text-[color:var(--color-cream)]',
+};
+
+const externalAttrs = external
+  ? { target: '_blank', rel: 'noopener noreferrer' }
+  : {};
+---
+
+<a href={href} class:list={[base, styles[variant]]} {...externalAttrs}>
+  <slot />
+</a>

@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTAButton from '../components/CTAButton.astro';
+
+const lolaUrl = 'https://www.lolabooks.eu/products/the-money-sham-stephen-laughton';
+---
+
+<BaseLayout
+  title="The Book"
+  description="The Money Sham by Stephen Laughton — published by Lola Books."
+>
+  <h1>The Book</h1>
+
+  <div class="mt-10 grid gap-10 sm:grid-cols-[200px_1fr] sm:gap-12">
+    <a href={lolaUrl} target="_blank" rel="noopener noreferrer" class="block no-underline">
+      <img
+        src="/book-cover.png"
+        alt="Cover of The Money Sham by Stephen Laughton"
+        width="200"
+        height="300"
+        class="w-full border border-[color:var(--color-rule)] shadow-sm"
+        loading="eager"
+      />
+    </a>
+
+    <div>
+      <h2 class="!mt-0">The Money Sham</h2>
+      <p>
+        <em>[Synopsis placeholder.]</em> A clear-eyed account of how money
+        actually works in modern economies — how it is created, who issues it,
+        and why the orthodox story we tell ourselves about deficits and debt
+        misses the point. Drawing on decades inside the financial sector,
+        Stephen Laughton sets out a real-resource alternative and the seven
+        policies that follow from it. <em>[Steve to revise.]</em>
+      </p>
+
+      <dl class="mt-6 grid grid-cols-[max-content_1fr] gap-x-4 gap-y-1 text-sm">
+        <dt class="font-medium">Author</dt><dd>Stephen Laughton</dd>
+        <dt class="font-medium">Publisher</dt><dd>Lola Books</dd>
+        <dt class="font-medium">Pages</dt><dd>346</dd>
+        <dt class="font-medium">ISBN</dt><dd>978-3-9828799-0-1</dd>
+      </dl>
+
+      <div class="mt-8">
+        <CTAButton href={lolaUrl} external>Buy from Lola Books</CTAButton>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

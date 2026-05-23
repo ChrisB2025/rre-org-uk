@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTAButton from '../components/CTAButton.astro';
+---
+
+<BaseLayout
+  title="Real Resource Economics"
+  description="Real Resource Economics — the work of Stephen Laughton, author of The Money Sham (Lola Books)."
+>
+  <h1>Real Resource Economics</h1>
+
+  <p class="mt-6 text-lg text-[color:var(--color-charcoal)]">
+    Real Resource Economics asks a simple question: what can our economy
+    actually do, given the people, materials, and energy available to it? It
+    starts from real capacity rather than from money, and treats public spending
+    decisions as choices about what to build, who to employ, and what to leave
+    undone — not as questions of affordability. <em>[Placeholder lede — Steve to
+    revise.]</em>
+  </p>
+
+  <p class="mt-4">
+    Stephen Laughton is a writer and former financial professional. His book
+    <em>The Money Sham</em> sets out the case for Real Resource Economics in
+    plain language. <em>[Placeholder bio.]</em>
+  </p>
+
+  <div class="mt-10 flex flex-wrap gap-3">
+    <CTAButton
+      href="https://www.lolabooks.eu/products/the-money-sham-stephen-laughton"
+      external
+    >
+      Read the Book
+    </CTAButton>
+    <CTAButton href="/policies" variant="outline">
+      Explore the Ideas
+    </CTAButton>
+  </div>
+
+  <hr class="my-12 border-[color:var(--color-rule)]" />
+
+  <section>
+    <h2 class="!mt-0">Related work: MMTUK</h2>
+    <p>
+      Many of the ideas in <em>The Money Sham</em> sit alongside the work of
+      MMTUK, the UK's first MMT-driven policy research organisation. See
+      <a href="https://mmtuk.org" target="_blank" rel="noopener noreferrer">mmtuk.org</a>
+      for related policy papers and briefings.
+    </p>
+  </section>
+</BaseLayout>

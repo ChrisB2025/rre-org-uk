@@ -1,0 +1,77 @@
+---
+const { pathname } = Astro.url;
+
+const links = [
+  { href: '/',         label: 'Home' },
+  { href: '/book',     label: 'The Book' },
+  { href: '/policies', label: 'The 7 Policies' },
+  { href: '/glossary', label: 'Glossary' },
+  { href: '/about',    label: 'About' },
+  { href: '/mmtuk',    label: 'MMTUK' },
+];
+
+const isCurrent = (href: string) =>
+  href === '/' ? pathname === '/' : pathname.startsWith(href);
+---
+
+<header class="border-b border-[color:var(--color-rule)] bg-[color:var(--color-cream)]">
+  <div class="mx-auto flex max-w-4xl flex-col px-6 py-5 sm:flex-row sm:items-baseline sm:justify-between">
+    <a href="/" class="no-underline">
+      <div class="leading-tight">
+        <div class="font-serif text-xl font-bold text-[color:var(--color-ink)]">
+          Real Resource Economics
+        </div>
+        <div class="text-sm text-[color:var(--color-charcoal)]/70">
+          Stephen Laughton
+        </div>
+      </div>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="mt-4 hidden sm:mt-0 sm:block" aria-label="Main">
+      <ul class="flex flex-wrap gap-x-5 gap-y-1 text-sm">
+        {links.map(({ href, label }) => (
+          <li>
+            <a
+              href={href}
+              aria-current={isCurrent(href) ? 'page' : undefined}
+              class:list={[
+                'no-underline hover:underline',
+                isCurrent(href) && 'underline underline-offset-4 font-medium',
+              ]}
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <!-- Mobile nav (no JS) -->
+    <details class="group mt-4 sm:hidden">
+      <summary
+        class="cursor-pointer list-none rounded border border-[color:var(--color-ink)] px-3 py-1.5 text-sm font-medium"
+      >
+        <span class="group-open:hidden">Menu</span>
+        <span class="hidden group-open:inline">Close</span>
+      </summary>
+      <nav class="mt-3" aria-label="Mobile">
+        <ul class="flex flex-col gap-2 text-base">
+          {links.map(({ href, label }) => (
+            <li>
+              <a
+                href={href}
+                aria-current={isCurrent(href) ? 'page' : undefined}
+                class:list={[
+                  isCurrent(href) && 'font-medium',
+                ]}
+              >
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>
