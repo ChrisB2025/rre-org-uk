@@ -1,4 +1,5 @@
 ---
+import { marked } from 'marked';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import glossaryData from '../data/glossary.json';
 
@@ -8,11 +9,18 @@ interface Entry {
   todo: boolean;
 }
 
+marked.setOptions({ gfm: true });
+
 const entries: Entry[] = glossaryData.entries;
 const note: string = glossaryData.note;
+const overviewTitle: string = glossaryData.overviewTitle;
+const overviewHtml: string = marked.parse(glossaryData.overview) as string;
+
+const groupLetter = (term: string) =>
+  (term.match(/[A-Za-z]/)?.[0] ?? '#').toUpperCase();
 
 const grouped = entries.reduce<Record<string, Entry[]>>((acc, entry) => {
-  const letter = entry.term[0].toUpperCase();
+  const letter = groupLetter(entry.term);
   (acc[letter] ||= []).push(entry);
   return acc;
 }, {});
@@ -21,17 +29,21 @@ const letters = Object.keys(grouped).sort();
 ---
 
 <BaseLayout
-  title="Glossary"
-  description="Glossary of Modern Monetary Theory and Real Resource Economics terms."
+  title="Economic Jargon – Glossary"
+  description="A plain-language glossary of economics and Modern Monetary Theory terms, from The Money Sham by Stephen Laughton."
 >
-  <h1>Glossary</h1>
+  <h1>Economic Jargon – Glossary</h1>
 
   <p class="mt-6 text-sm text-[color:var(--color-charcoal)]/80">
     {note}
   </p>
 
-  <nav aria-label="Jump to letter" class="mt-8 border-y border-[color:var(--color-rule)] py-3">
-    <ul class="flex flex-wrap gap-x-3 gap-y-1 text-sm tabular-nums">
+  <nav aria-label="Jump to section" class="mt-8 border-y border-[color:var(--color-rule)] py-3">
+    <ul class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm tabular-nums">
+      <li>
+        <a href="#overview" class="no-underline hover:underline font-medium">Overview</a>
+      </li>
+      <li aria-hidden="true" class="text-[color:var(--color-charcoal)]/30">·</li>
       {letters.map((letter) => (
         <li>
           <a href={`#letter-${letter}`} class="no-underline hover:underline font-medium">
@@ -42,22 +54,25 @@ const letters = Object.keys(grouped).sort();
     </ul>
   </nav>
 
-  <div class="mt-10 space-y-10">
+  <section id="overview" class="prose-glossary mt-10 scroll-mt-6">
+    <h2 class="!mt-0">{overviewTitle}</h2>
+    <div set:html={overviewHtml} />
+  </section>
+
+  <div class="mt-12 space-y-10">
     {letters.map((letter) => (
       <section id={`letter-${letter}`} class="scroll-mt-6">
         <h2 class="!mt-0 text-[color:var(--color-charcoal)]/50 font-serif">{letter}</h2>
-        <dl class="mt-4 space-y-5">
+        <dl class="mt-4 space-y-6">
           {grouped[letter].map((entry) => (
             <div>
               <dt class="font-bold text-[color:var(--color-ink)]">
                 {entry.term}
               </dt>
               <dd class:list={[
-                'mt-1',
+                'prose-glossary mt-1',
                 entry.todo && 'text-[color:var(--color-charcoal)]/60 italic',
-              ]}>
-                {entry.definition}
-              </dd>
+              ]} set:html={marked.parse(entry.definition)} />
             </div>
           ))}
         </dl>
@@ -65,3 +80,57 @@ const letters = Object.keys(grouped).sort();
     ))}
   </div>
 </BaseLayout>
+
+<style>
+  /* Light prose styling for Markdown-rendered glossary content */
+  .prose-glossary :global(p) {
+    margin-top: 0.75rem;
+  }
+  .prose-glossary :global(p:first-child) {
+    margin-top: 0;
+  }
+  .prose-glossary :global(ul),
+  .prose-glossary :global(ol) {
+    margin-top: 0.75rem;
+    padding-left: 1.4rem;
+    list-style-position: outside;
+  }
+  .prose-glossary :global(ul) {
+    list-style-type: disc;
+  }
+  .prose-glossary :global(ol) {
+    list-style-type: decimal;
+  }
+  .prose-glossary :global(li) {
+    margin-top: 0.35rem;
+  }
+  .prose-glossary :global(li > ul),
+  .prose-glossary :global(li > ol) {
+    margin-top: 0.35rem;
+  }
+  .prose-glossary :global(h4) {
+    margin-top: 1.25rem;
+    margin-bottom: 0.25rem;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+  .prose-glossary :global(table) {
+    margin-top: 1rem;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    display: block;
+    overflow-x: auto;
+  }
+  .prose-glossary :global(th),
+  .prose-glossary :global(td) {
+    border: 1px solid var(--color-rule);
+    padding: 0.4rem 0.6rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  .prose-glossary :global(th) {
+    background: color-mix(in srgb, var(--color-rule) 40%, transparent);
+    font-weight: 600;
+  }
+</style>

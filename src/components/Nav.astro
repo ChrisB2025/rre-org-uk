@@ -3,11 +3,12 @@ const { pathname } = Astro.url;
 
 const links = [
   { href: '/',         label: 'Home' },
-  { href: '/book',     label: 'The Book' },
-  { href: '/policies', label: 'The 7 Policies' },
-  { href: '/glossary', label: 'Glossary' },
-  { href: '/about',    label: 'About' },
-  { href: '/mmtuk',    label: 'MMTUK' },
+  { href: '/book',     label: 'The Money Sham' },
+  { href: '/policies', label: '7 Policies' },
+  { href: '/videos',   label: 'Videos' },
+  { href: '/glossary', label: 'Economic Jargon – Glossary' },
+  { href: '/myths',    label: 'Myths and Fact Check' },
+  { href: '/contact',  label: 'Contact' },
 ];
 
 const isCurrent = (href: string) =>
@@ -19,10 +20,10 @@ const isCurrent = (href: string) =>
     <a href="/" class="no-underline">
       <div class="leading-tight">
         <div class="font-serif text-xl font-bold text-[color:var(--color-ink)]">
-          Real Resource Economics
+          The Money Sham
         </div>
         <div class="text-sm text-[color:var(--color-charcoal)]/70">
-          Stephen Laughton
+          Host to Real Resource Economics
         </div>
       </div>
     </a>

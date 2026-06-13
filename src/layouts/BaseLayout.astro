@@ -8,13 +8,14 @@ interface Props {
   description?: string;
 }
 
+const brand = 'The Money Sham';
+
 const {
-  title = 'Real Resource Economics',
-  description = 'Real Resource Economics — the work of Stephen Laughton, author of The Money Sham (Lola Books).',
+  title = `${brand} — Host to Real Resource Economics`,
+  description = 'The Money Sham by Stephen Laughton — host to Real Resource Economics. How a misconception about money shackles UK politics, and what becomes possible once we see past it.',
 } = Astro.props;
 
-const fullTitle =
-  title === 'Real Resource Economics' ? title : `${title} | Real Resource Economics`;
+const fullTitle = title.includes(brand) ? title : `${title} | ${brand}`;
 ---
 
 <!doctype html>

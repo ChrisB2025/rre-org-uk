@@ -1,12 +1,50 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const policies = Array.from({ length: 7 }, (_, i) => ({
-  number: i + 1,
-  title: `Placeholder Title for Policy ${i + 1}`,
-  description:
-    'Two- to three-sentence placeholder description of this policy proposal. Steve will provide the full text drawn from the relevant chapter of The Money Sham. The placeholder exists to demonstrate the rhythm and visual weight of each entry.',
-}));
+const policies = [
+  {
+    number: 1,
+    title: 'New Economic Institutions',
+    description:
+      'Replace existing UK institutions with new bodies aligned with RRE principles. An Office for Inflation Analysis (OIA) replaces the Office for Budget Responsibility and monitors supply chains, labour shortages, monopoly pricing, and private debt growth. An Office for Responsible Taxation (ORT) simplifies the tax system, closes the tax gap, reduces avoidance, and assesses how taxes affect inflation and inequality. Taxes are not funding mechanisms but tools for sustaining the currency, reducing inequality, altering behaviour and controlling inflation.',
+  },
+  {
+    number: 2,
+    title: 'Rebuild Financial Regulation',
+    description:
+      'The deregulated finance sector has produced asset inflation, ever-increasing inequality and economic stagnation. A new Office for Banking Regulation (OBR) will reintroduce credit guidance, restrict speculative lending, and direct bank credit toward productive investment. Banks will face major restrictions on derivatives, off-balance-sheet activity, speculative lending, and foreign currency lending.',
+  },
+  {
+    number: 3,
+    title: 'Affordable Housing Through Credit Reform',
+    description:
+      'Excessive mortgage credit has driven house price inflation and transformed housing into a speculative asset. Proposed solutions include limiting buy-to-let borrowing, introducing land value taxes, discouraging land banking, and reducing the permitted ratio of mortgage loans relative to incomes and, of course, building more houses. This restores affordability and thereby raises living standards.',
+  },
+  {
+    number: 4,
+    title: 'Stronger Competition Policy',
+    description:
+      'Capitalism is meant to encourage free markets — what we have now is too much market power in too few hands. The government must strengthen the Competition and Markets Authority (CMA) to tackle monopoly power, price gouging, and excessive corporate concentration. Mergers and acquisitions are only permitted if they clearly increase productive capacity and serve the public purpose.',
+  },
+  {
+    number: 5,
+    title: 'Permanently Low Interest Rates',
+    description:
+      'Higher interest rates cannot control inflation and in the current era drive up prices, worsen inequality and economic fragility while rewarding the wealthy for doing nothing. Permanently low or zero rates combined with the bank regulation will bear down on inflation.',
+  },
+  {
+    number: 6,
+    title: 'A Transition Job Guarantee',
+    description:
+      'With fiscal policy promoting full employment, the government provides a job with a living wage for anyone who wants it through a Job Guarantee programme. A buffer stock of employed people increases wealth, stabilises prices, and promotes social cohesion. Examples from Roosevelt’s New Deal, Argentina, and Austria are precedents.',
+  },
+  {
+    number: 7,
+    title: 'Abandon Devaluation Phobia',
+    description:
+      'The UK should not tremble at the prospect of currency depreciation and should no longer allow bond markets and speculative financial flows to dictate domestic economic policy. Exchange-rate pass-through into UK inflation is relatively low; devaluation can improve competitiveness and stimulate domestic production. The bulk of foreign exchange trading is speculative rather than trade-related, and sovereign governments can and must stabilise bond markets. The UK should prioritise employment, productive investment, and productive capacity rather than defending financial orthodoxy or appeasing currency markets.',
+  },
+];
 ---
 
 <BaseLayout
