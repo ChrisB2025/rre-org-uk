@@ -2,7 +2,7 @@
 builder = "railpack"
 
 [deploy]
-startCommand = "npx serve dist --listen tcp://0.0.0.0:$PORT"
+startCommand = "HOST=0.0.0.0 node ./dist/server/entry.mjs"
 healthcheckPath = "/"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 3
