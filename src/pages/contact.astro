@@ -24,7 +24,7 @@ const field =
 
       {status === 'sent' && (
         <p data-banner="sent" class="mb-8 border-l-2 border-[color:var(--color-accent)] bg-[color:var(--color-paper-2)] px-4 py-3 text-sm text-[color:var(--color-ink)]">
-          Thank you — your message has been sent. Steve will get back to you.
+          Thank you. Your message has been sent. Steve will get back to you.
         </p>
       )}
       {status === 'error' && (
@@ -93,7 +93,7 @@ const field =
         const data = await res.json().catch(() => ({ ok: res.ok }));
         if (res.ok && data.ok) {
           form.reset();
-          setStatus('Thank you — your message has been sent.');
+          setStatus('Thank you. Your message has been sent.');
         } else {
           setStatus('Sorry, that didn’t send. Please check your details and try again.');
         }

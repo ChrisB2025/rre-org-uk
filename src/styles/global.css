@@ -96,7 +96,7 @@
   @media (min-width: 640px)  { .wrap { padding-inline: 2.5rem; } }
   @media (min-width: 1024px) { .wrap { padding-inline: 4rem; } }
 
-  /* Left-anchored reading measure — NOT centered. */
+  /* Left-anchored reading measure, NOT centered. */
   .measure { max-width: 46rem; }
 
   /* Editorial small-caps label. */
@@ -121,7 +121,7 @@
     max-width: 40rem;
   }
 
-  /* Editorial drop cap — left edge stays flush with the column. */
+  /* Editorial drop cap; left edge stays flush with the column. */
   .dropcap::first-letter {
     float: left;
     font-family: var(--font-display);
