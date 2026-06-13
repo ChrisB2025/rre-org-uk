@@ -4,6 +4,11 @@ dist/
 
 # Dependencies
 node_modules/
+# package-lock.json is not tracked: a Windows-generated lock omits Linux-only
+# optional deps (@tailwindcss/oxide-wasm32-wasi -> @emnapi/*), which breaks
+# `npm ci` on Railway's Linux builder. With no lockfile, Railpack uses
+# `npm install`, which resolves the full tree natively on Linux.
+package-lock.json
 
 # Logs
 npm-debug.log*
