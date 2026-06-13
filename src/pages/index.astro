@@ -6,14 +6,16 @@ import CTAButton from '../components/CTAButton.astro';
 <BaseLayout
   description="The Money Sham by Stephen Laughton — host to Real Resource Economics. How a misconception about money shackles UK politics, and what becomes possible once we see past it."
 >
-  <h1>
-    The Money Sham
-    <span class="mt-2 block text-xl font-normal text-[color:var(--color-charcoal)]/80">
-      Breaking Free from Fifty Years of Economic Orthodoxy
-    </span>
-  </h1>
+  <p class="label rise rise-1">A book by Stephen Laughton</p>
 
-  <p class="mt-6 text-lg text-[color:var(--color-charcoal)]">
+  <h1 class="rise rise-1 mt-3">
+    The Money Sham
+  </h1>
+  <p class="display rise rise-2 mt-3 text-[clamp(1.3rem,1rem+1.4vw,1.9rem)] font-normal italic leading-tight text-[color:var(--color-ink-soft)]">
+    Breaking Free from Fifty Years of Economic Orthodoxy
+  </p>
+
+  <p class="lede dropcap rise rise-3 mt-9">
     Rising prices, hospital waiting lists, unaffordable housing, rising
     unemployment, ill health, nurses at food banks, low wages, depression and
     despair, not to mention extreme heat and flooding … an incomplete list of
@@ -27,22 +29,7 @@ import CTAButton from '../components/CTAButton.astro';
     (<a href="/myths">See Myths and Fact Check</a>)
   </p>
 
-  <p class="mt-4">
-    With a degree in Philosophy in 1972, Steve has been a teacher, a trade
-    unionist and later an employer, teacher trainer, a playwright, human
-    resource airline safety advisor to Volga-Dnieper Airline, and a
-    cross-cultural language awareness trainer. He gained a Masters in Economics
-    in 2018. In 2023 he helped Mosler with an update to his
-    <em>Soft Currency Economics</em>. As owner of two limited companies, his
-    knowledge of double-entry bookkeeping — absent from academic economics —
-    helped him to understand money. In 2024 he presented at the first UK MMT
-    conference alongside Bill Mitchell, Warren Mosler and Stephanie Kelton. He
-    remains a philosophical economist, who believes current economic wisdom is
-    deeply flawed and that centrist politicians who follow it are paving the way
-    for their own demise.
-  </p>
-
-  <div class="mt-10 flex flex-wrap gap-3">
+  <div class="rise rise-4 mt-9 flex flex-wrap gap-3">
     <CTAButton
       href="https://www.lolabooks.eu/products/the-money-sham-stephen-laughton"
       external
@@ -54,16 +41,39 @@ import CTAButton from '../components/CTAButton.astro';
     </CTAButton>
   </div>
 
-  <hr class="my-12 border-[color:var(--color-rule)]" />
+  <hr class="my-14 border-[color:var(--color-rule)]" />
 
-  <section>
-    <h2 class="!mt-0">Related work: MMTUK</h2>
-    <p>
-      The ideas within <em>The Money Sham</em> promote policies grounded in Real
-      Resource Economics. They are complemented by the work of the MMTUK
-      Research Group. See
-      <a href="https://mmtuk.org" target="_blank" rel="noopener noreferrer">mmtuk.org</a>
-      for policy papers and briefings.
+  <div class="grid gap-x-12 gap-y-6 sm:grid-cols-[10rem_1fr]">
+    <p class="label sm:pt-1.5">The Author</p>
+    <p class="!mt-0 max-w-[42rem]">
+      With a degree in Philosophy in 1972, Steve has been a teacher, a trade
+      unionist and later an employer, teacher trainer, a playwright, human
+      resource airline safety advisor to Volga-Dnieper Airline, and a
+      cross-cultural language awareness trainer. He gained a Masters in Economics
+      in 2018. In 2023 he helped Mosler with an update to his
+      <em>Soft Currency Economics</em>. As owner of two limited companies, his
+      knowledge of double-entry bookkeeping — absent from academic economics —
+      helped him to understand money. In 2024 he presented at the first UK MMT
+      conference alongside Bill Mitchell, Warren Mosler and Stephanie Kelton. He
+      remains a philosophical economist, who believes current economic wisdom is
+      deeply flawed and that centrist politicians who follow it are paving the
+      way for their own demise.
     </p>
+  </div>
+
+  <hr class="my-14 border-[color:var(--color-rule)]" />
+
+  <section class="grid gap-x-12 gap-y-6 sm:grid-cols-[10rem_1fr]">
+    <p class="label sm:pt-1.5">Related Work</p>
+    <div class="!mt-0">
+      <h2 class="!mt-0 text-2xl">MMTUK</h2>
+      <p>
+        The ideas within <em>The Money Sham</em> promote policies grounded in
+        Real Resource Economics. They are complemented by the work of the MMTUK
+        Research Group. See
+        <a href="https://mmtuk.org" target="_blank" rel="noopener noreferrer">mmtuk.org</a>
+        for policy papers and briefings.
+      </p>
+    </div>
   </section>
 </BaseLayout>

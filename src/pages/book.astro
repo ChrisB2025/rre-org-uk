@@ -9,22 +9,50 @@ const lolaUrl = 'https://www.lolabooks.eu/products/the-money-sham-stephen-laught
   title="The Money Sham"
   description="The Money Sham by Stephen Laughton — a political–economic history of how misunderstandings about money have derailed UK policy. Published by Lola Books."
 >
-  <h1>The Money Sham</h1>
+  <p class="label">The Book</p>
+  <h1 class="mt-3">The Money Sham</h1>
 
-  <div class="mt-10 grid gap-10 sm:grid-cols-[200px_1fr] sm:gap-12">
-    <a href={lolaUrl} target="_blank" rel="noopener noreferrer" class="block no-underline">
-      <img
-        src="/book-cover.png"
-        alt="Cover of The Money Sham by Stephen Laughton"
-        width="768"
-        height="1270"
-        class="h-auto w-full border border-[color:var(--color-rule)] shadow-sm"
-        loading="eager"
-      />
-    </a>
+  <div class="mt-12 grid gap-10 sm:grid-cols-[240px_1fr] sm:gap-14">
+    <!-- Cover + facts rail -->
+    <aside class="sm:sticky sm:top-8 sm:self-start">
+      <a href={lolaUrl} target="_blank" rel="noopener noreferrer" class="block no-underline">
+        <img
+          src="/book-cover.png"
+          alt="Cover of The Money Sham by Stephen Laughton"
+          width="768"
+          height="1270"
+          class="h-auto w-full border border-[color:var(--color-rule)] shadow-[0_18px_40px_-18px_rgba(27,26,22,0.5)]"
+          loading="eager"
+        />
+      </a>
 
+      <dl class="mt-7 space-y-3 border-t border-[color:var(--color-rule)] pt-5 text-sm">
+        <div class="flex justify-between gap-4">
+          <dt class="label !text-[color:var(--color-ink-soft)]">Author</dt>
+          <dd class="text-right text-[color:var(--color-ink)]">Stephen Laughton</dd>
+        </div>
+        <div class="flex justify-between gap-4">
+          <dt class="label !text-[color:var(--color-ink-soft)]">Publisher</dt>
+          <dd class="text-right text-[color:var(--color-ink)]">Lola Books</dd>
+        </div>
+        <div class="flex justify-between gap-4">
+          <dt class="label !text-[color:var(--color-ink-soft)]">Pages</dt>
+          <dd class="text-right text-[color:var(--color-ink)]">346</dd>
+        </div>
+        <div class="flex justify-between gap-4">
+          <dt class="label !text-[color:var(--color-ink-soft)]">ISBN</dt>
+          <dd class="text-right tabular-nums text-[color:var(--color-ink)]">978-3-9828799-0-1</dd>
+        </div>
+      </dl>
+
+      <div class="mt-7">
+        <CTAButton href={lolaUrl} external>Buy from Lola Books</CTAButton>
+      </div>
+    </aside>
+
+    <!-- Synopsis -->
     <div>
-      <p class="!mt-0">
+      <p class="lede dropcap !mt-0">
         <em>The Money Sham</em> is not just a theoretical exploration of “what
         money is.” It is a political–economic history of how misunderstandings
         about money have derailed all the well-intentioned attempts to solve the
@@ -59,17 +87,6 @@ const lolaUrl = 'https://www.lolabooks.eu/products/the-money-sham-stephen-laught
         grounded in monetary realism, real-resource economics, and the practical
         realities of British institutions.
       </p>
-
-      <dl class="mt-6 grid grid-cols-[max-content_1fr] gap-x-4 gap-y-1 text-sm">
-        <dt class="font-medium">Author</dt><dd>Stephen Laughton</dd>
-        <dt class="font-medium">Publisher</dt><dd>Lola Books</dd>
-        <dt class="font-medium">Pages</dt><dd>346</dd>
-        <dt class="font-medium">ISBN</dt><dd>978-3-9828799-0-1</dd>
-      </dl>
-
-      <div class="mt-8">
-        <CTAButton href={lolaUrl} external>Buy from Lola Books</CTAButton>
-      </div>
     </div>
   </div>
 </BaseLayout>

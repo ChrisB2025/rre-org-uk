@@ -8,12 +8,12 @@ interface Props {
 const { href, external = false, variant = 'solid' } = Astro.props;
 
 const base =
-  'inline-block rounded-sm px-5 py-2.5 text-sm font-medium no-underline transition-colors';
+  'group inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold no-underline tracking-wide transition-all duration-150';
 const styles = {
   solid:
-    'bg-[color:var(--color-ink)] text-[color:var(--color-cream)] hover:bg-black',
+    'bg-[color:var(--color-ink)] text-[color:var(--color-paper)] hover:bg-[color:var(--color-accent-deep)]',
   outline:
-    'border border-[color:var(--color-ink)] text-[color:var(--color-ink)] hover:bg-[color:var(--color-ink)] hover:text-[color:var(--color-cream)]',
+    'border border-[color:var(--color-ink)] text-[color:var(--color-ink)] hover:border-[color:var(--color-accent-deep)] hover:text-[color:var(--color-accent-deep)]',
 };
 
 const externalAttrs = external
@@ -23,4 +23,5 @@ const externalAttrs = external
 
 <a href={href} class:list={[base, styles[variant]]} {...externalAttrs}>
   <slot />
+  <span aria-hidden="true" class="transition-transform duration-150 group-hover:translate-x-0.5">→</span>
 </a>

@@ -2,17 +2,34 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="mt-24 border-t border-[color:var(--color-rule)]">
-  <div class="mx-auto max-w-4xl px-6 py-10 text-sm text-[color:var(--color-charcoal)]/80">
-    <p>&copy; {year} Stephen Laughton.</p>
-    <p class="mt-2">
-      <em>The Money Sham</em> &mdash; published by
-      <a href="https://www.lolabooks.eu/products/the-money-sham-stephen-laughton" target="_blank" rel="noopener noreferrer">
-        Lola Books
-      </a>.
-    </p>
-    <p class="mt-2">
-      Related: <a href="https://mmtuk.org" target="_blank" rel="noopener noreferrer">MMTUK</a>.
-    </p>
+<footer class="mt-28 border-t-2 border-[color:var(--color-ink)]">
+  <div class="wrap grid gap-8 py-12 sm:grid-cols-[1fr_auto] sm:items-start">
+    <div>
+      <p class="display text-xl font-semibold text-[color:var(--color-ink)]">The Money Sham</p>
+      <p class="mt-2 max-w-md text-sm text-[color:var(--color-ink-soft)]">
+        Host to Real Resource Economics — the writing of Stephen Laughton on how
+        money actually works, and what becomes possible once we see past the sham.
+      </p>
+    </div>
+
+    <dl class="grid gap-x-8 gap-y-3 text-sm sm:text-right">
+      <div>
+        <dt class="label">Published by</dt>
+        <dd class="mt-0.5">
+          <a href="https://www.lolabooks.eu/products/the-money-sham-stephen-laughton" target="_blank" rel="noopener noreferrer">Lola Books</a>
+        </dd>
+      </div>
+      <div>
+        <dt class="label">Related</dt>
+        <dd class="mt-0.5">
+          <a href="https://mmtuk.org" target="_blank" rel="noopener noreferrer">MMTUK</a>
+        </dd>
+      </div>
+    </dl>
+  </div>
+
+  <div class="wrap flex flex-col gap-1 border-t border-[color:var(--color-rule)] py-5 text-xs text-[color:var(--color-ink-soft)] sm:flex-row sm:justify-between">
+    <p>&copy; {year} Stephen Laughton. All rights reserved.</p>
+    <p>Real Resource Economics</p>
   </div>
 </footer>

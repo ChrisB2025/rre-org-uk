@@ -1,22 +1,28 @@
 @import "tailwindcss";
 
-@import "@fontsource/inter/400.css";
-@import "@fontsource/inter/500.css";
-@import "@fontsource/inter/700.css";
+@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/hanken-grotesk";
 
 @theme {
-  --color-cream: #fafaf7;
-  --color-ink: #1a1a1a;
-  --color-charcoal: #1f2937;
-  --color-rule: #e5e3dc;
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    "Helvetica Neue", Arial, sans-serif;
+  --color-paper: #f7f4ec;
+  --color-paper-2: #efeadd;
+  --color-ink: #1b1a16;
+  --color-ink-soft: #57534a;
+  --color-rule: #ddd6c6;
+  --color-accent: #c5341a;
+  --color-accent-deep: #97250f;
+
+  --font-sans: "Hanken Grotesk Variable", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Fraunces Variable", Georgia, "Times New Roman", serif;
 }
 
 @layer base {
+  :root { color-scheme: light; }
+
   html {
-    background-color: var(--color-cream);
-    color: var(--color-charcoal);
+    background-color: var(--color-paper);
+    color: var(--color-ink-soft);
     font-family: var(--font-sans);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -25,35 +31,127 @@
 
   body {
     font-size: 1.0625rem;
-    line-height: 1.7;
+    line-height: 1.68;
+    /* faint warm wash, top-right, for atmosphere without weight */
+    background-image: radial-gradient(
+      130% 90% at 100% -10%,
+      color-mix(in srgb, var(--color-accent) 6%, transparent),
+      transparent 55%
+    );
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4 {
     color: var(--color-ink);
-    font-weight: 700;
-    letter-spacing: -0.015em;
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 40, "SOFT" 0, "WONK" 0;
+    text-wrap: balance;
   }
 
-  h1 { font-size: 2.5rem; line-height: 1.15; }
-  h2 { font-size: 1.75rem; line-height: 1.25; margin-top: 2.5rem; }
-  h3 { font-size: 1.25rem; line-height: 1.3; margin-top: 1.75rem; }
+  h1 {
+    font-size: clamp(2.5rem, 1.5rem + 3.4vw, 3.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0;
+  }
+  h2 { font-size: clamp(1.55rem, 1.2rem + 1.1vw, 2.05rem); line-height: 1.14; margin-top: 2.75rem; }
+  h3 { font-size: 1.3rem; line-height: 1.25; margin-top: 1.9rem; }
 
-  p { margin-top: 1rem; }
+  p { margin-top: 1.05rem; max-width: 42rem; }
   p:first-child { margin-top: 0; }
+
+  strong, b { color: var(--color-ink); font-weight: 600; }
 
   a {
     color: var(--color-ink);
     text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-thickness: 1px;
-    transition: text-decoration-thickness 120ms ease;
+    text-decoration-color: color-mix(in srgb, var(--color-accent) 50%, transparent);
+    text-underline-offset: 0.18em;
+    text-decoration-thickness: 1.5px;
+    transition: color 140ms ease, text-decoration-color 140ms ease;
   }
-  a:hover { text-decoration-thickness: 2px; }
+  a:hover { color: var(--color-accent-deep); text-decoration-color: var(--color-accent); }
 
-  main { min-height: 60vh; }
+  :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 2px; }
 
-  ::selection {
-    background-color: var(--color-ink);
-    color: var(--color-cream);
+  main { min-height: 64vh; }
+
+  ::selection { background-color: var(--color-accent); color: var(--color-paper); }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-delay: 0ms !important; transition: none !important; }
   }
+}
+
+@layer components {
+  /* One shared container: header, main and footer align to the same left edge. */
+  .wrap {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+  @media (min-width: 640px)  { .wrap { padding-inline: 2.5rem; } }
+  @media (min-width: 1024px) { .wrap { padding-inline: 4rem; } }
+
+  /* Left-anchored reading measure — NOT centered. */
+  .measure { max-width: 46rem; }
+
+  /* Editorial small-caps label. */
+  .label {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-accent-deep);
+  }
+
+  /* Display-optical helper for the largest type. */
+  .display { font-family: var(--font-display); font-variation-settings: "opsz" 144, "SOFT" 0, "WONK" 0; }
+
+  /* Standfirst / lede paragraph. */
+  .lede {
+    font-size: clamp(1.18rem, 1.05rem + 0.5vw, 1.4rem);
+    line-height: 1.5;
+    color: var(--color-ink);
+    max-width: 40rem;
+  }
+
+  /* Editorial drop cap — left edge stays flush with the column. */
+  .dropcap::first-letter {
+    float: left;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-variation-settings: "opsz" 144;
+    font-size: 3.9em;
+    line-height: 0.78;
+    padding-right: 0.08em;
+    margin-top: 0.04em;
+    color: var(--color-accent);
+  }
+
+  /* Quiet nav / UI link that opts out of the default underline. */
+  .navlink {
+    color: var(--color-ink-soft);
+    text-decoration: none;
+    transition: color 140ms ease;
+  }
+  .navlink:hover { color: var(--color-ink); }
+  .navlink[aria-current="page"] { color: var(--color-ink); font-weight: 600; }
+
+  /* Load-in animation for the hero. */
+  .rise { opacity: 0; animation: rise 720ms cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .rise-1 { animation-delay: 60ms; }
+  .rise-2 { animation-delay: 150ms; }
+  .rise-3 { animation-delay: 240ms; }
+  .rise-4 { animation-delay: 330ms; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(0.7rem); }
+  to   { opacity: 1; transform: translateY(0); }
 }

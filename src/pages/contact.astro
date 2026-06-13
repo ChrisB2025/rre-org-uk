@@ -4,57 +4,68 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 const params = Astro.url.searchParams;
 const status = params.get('sent') === '1' ? 'sent' : params.get('error') === '1' ? 'error' : null;
+
+const field =
+  'mt-2 w-full border border-[color:var(--color-rule)] bg-white/70 px-3.5 py-2.5 text-[color:var(--color-ink)] outline-none transition-colors focus:border-[color:var(--color-accent)]';
 ---
 
 <BaseLayout title="Contact" description="Get in touch with Stephen Laughton.">
-  <h1>Contact</h1>
+  <p class="label">Get in Touch</p>
+  <h1 class="mt-3">Contact</h1>
 
-  {status === 'sent' && (
-    <p data-banner="sent" class="mt-6 rounded border border-green-700/40 bg-green-50 px-4 py-3 text-sm text-green-900">
-      Thank you — your message has been sent. Steve will get back to you.
-    </p>
-  )}
-  {status === 'error' && (
-    <p data-banner="error" class="mt-6 rounded border border-red-700/40 bg-red-50 px-4 py-3 text-sm text-red-900">
-      Sorry, something went wrong and your message wasn't sent. Please try again.
-    </p>
-  )}
+  <div class="mt-10 grid gap-x-12 gap-y-8 sm:grid-cols-[10rem_1fr]">
+    <p class="label sm:pt-1.5">Send a Message</p>
 
-  <p class="mt-6 text-lg text-[color:var(--color-charcoal)]">
-    Have a question or comment about <em>The Money Sham</em> or Real Resource
-    Economics? Send a message below.
-  </p>
+    <div class="!mt-0 max-w-[34rem]">
+      <p class="lede !mt-0 mb-8">
+        Have a question or comment about <em>The Money Sham</em> or Real Resource
+        Economics? Send a message below.
+      </p>
 
-  <form method="POST" action="/api/contact" class="mt-8 space-y-5" data-contact-form>
-    <div>
-      <label for="name" class="block text-sm font-medium">Name</label>
-      <input id="name" name="name" type="text" required autocomplete="name"
-        class="mt-1 w-full border border-[color:var(--color-rule)] bg-white px-3 py-2" />
+      {status === 'sent' && (
+        <p data-banner="sent" class="mb-8 border-l-2 border-[color:var(--color-accent)] bg-[color:var(--color-paper-2)] px-4 py-3 text-sm text-[color:var(--color-ink)]">
+          Thank you — your message has been sent. Steve will get back to you.
+        </p>
+      )}
+      {status === 'error' && (
+        <p data-banner="error" class="mb-8 border-l-2 border-[color:var(--color-accent)] bg-[color:var(--color-paper-2)] px-4 py-3 text-sm text-[color:var(--color-ink)]">
+          Sorry, something went wrong and your message wasn’t sent. Please try again.
+        </p>
+      )}
+
+      <form method="POST" action="/api/contact" class="space-y-6" data-contact-form>
+        <div>
+          <label for="name" class="label !text-[color:var(--color-ink-soft)]">Name</label>
+          <input id="name" name="name" type="text" required autocomplete="name" class={field} />
+        </div>
+        <div>
+          <label for="email" class="label !text-[color:var(--color-ink-soft)]">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" class={field} />
+        </div>
+        <div>
+          <label for="message" class="label !text-[color:var(--color-ink-soft)]">Message</label>
+          <textarea id="message" name="message" rows="6" required class={field}></textarea>
+        </div>
+
+        <!-- Honeypot: hidden from humans; bots fill it -->
+        <div aria-hidden="true" class="hidden">
+          <label>Company<input name="company" type="text" tabindex="-1" autocomplete="off" /></label>
+        </div>
+        <input type="hidden" name="ts" value="" data-ts />
+
+        <div class="flex flex-wrap items-center gap-4 pt-1">
+          <button
+            type="submit"
+            class="group inline-flex items-center gap-2 bg-[color:var(--color-ink)] px-6 py-3 text-sm font-semibold tracking-wide text-[color:var(--color-paper)] transition-colors duration-150 hover:bg-[color:var(--color-accent-deep)]"
+          >
+            Send message
+            <span aria-hidden="true" class="transition-transform duration-150 group-hover:translate-x-0.5">→</span>
+          </button>
+          <p data-form-status role="status" aria-live="polite" class="text-sm text-[color:var(--color-ink-soft)]"></p>
+        </div>
+      </form>
     </div>
-    <div>
-      <label for="email" class="block text-sm font-medium">Email</label>
-      <input id="email" name="email" type="email" required autocomplete="email"
-        class="mt-1 w-full border border-[color:var(--color-rule)] bg-white px-3 py-2" />
-    </div>
-    <div>
-      <label for="message" class="block text-sm font-medium">Message</label>
-      <textarea id="message" name="message" rows="6" required
-        class="mt-1 w-full border border-[color:var(--color-rule)] bg-white px-3 py-2"></textarea>
-    </div>
-
-    <!-- Honeypot: hidden from humans; bots fill it -->
-    <div aria-hidden="true" class="hidden">
-      <label>Company<input name="company" type="text" tabindex="-1" autocomplete="off" /></label>
-    </div>
-    <input type="hidden" name="ts" value="" data-ts />
-
-    <button type="submit"
-      class="inline-block rounded-sm bg-[color:var(--color-ink)] px-5 py-2.5 text-sm font-medium text-[color:var(--color-cream)] hover:bg-black">
-      Send message
-    </button>
-
-    <p data-form-status role="status" aria-live="polite" class="text-sm"></p>
-  </form>
+  </div>
 </BaseLayout>
 
 <script>

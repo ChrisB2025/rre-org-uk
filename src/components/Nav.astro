@@ -6,8 +6,8 @@ const links = [
   { href: '/book',     label: 'The Money Sham' },
   { href: '/policies', label: '7 Policies' },
   { href: '/videos',   label: 'Videos' },
-  { href: '/glossary', label: 'Economic Jargon – Glossary' },
-  { href: '/myths',    label: 'Myths and Fact Check' },
+  { href: '/glossary', label: 'Economic Jargon' },
+  { href: '/myths',    label: 'Myths & Fact Check' },
   { href: '/contact',  label: 'Contact' },
 ];
 
@@ -15,30 +15,32 @@ const isCurrent = (href: string) =>
   href === '/' ? pathname === '/' : pathname.startsWith(href);
 ---
 
-<header class="border-b border-[color:var(--color-rule)] bg-[color:var(--color-cream)]">
-  <div class="mx-auto flex max-w-4xl flex-col px-6 py-5 sm:flex-row sm:items-baseline sm:justify-between">
-    <a href="/" class="no-underline">
-      <div class="leading-tight">
-        <div class="font-serif text-xl font-bold text-[color:var(--color-ink)]">
+<header class="border-b border-[color:var(--color-rule)] bg-[color:var(--color-paper)]">
+  <div class="wrap">
+    <!-- Masthead -->
+    <div class="flex flex-col gap-4 pt-6 sm:flex-row sm:items-end sm:justify-between sm:pt-8">
+      <a href="/" class="group block no-underline">
+        <span class="display block text-[1.75rem] font-semibold leading-[0.95] tracking-[-0.02em] text-[color:var(--color-ink)] sm:text-[2.15rem]">
           The Money Sham
-        </div>
-        <div class="text-sm text-[color:var(--color-charcoal)]/70">
-          Host to Real Resource Economics
-        </div>
-      </div>
-    </a>
+        </span>
+        <span class="mt-2 block text-sm tracking-wide text-[color:var(--color-ink-soft)]">
+          Host to <span class="text-[color:var(--color-accent-deep)]">Real Resource Economics</span>
+        </span>
+      </a>
+      <span class="label hidden sm:block sm:pb-1.5">Stephen&nbsp;Laughton</span>
+    </div>
 
     <!-- Desktop nav -->
-    <nav class="mt-4 hidden sm:mt-0 sm:block" aria-label="Main">
-      <ul class="flex flex-wrap gap-x-5 gap-y-1 text-sm">
+    <nav class="mt-5 hidden border-t border-[color:var(--color-rule)] sm:block" aria-label="Main">
+      <ul class="-mb-px flex flex-wrap items-stretch gap-x-7 text-[0.9rem]">
         {links.map(({ href, label }) => (
           <li>
             <a
               href={href}
               aria-current={isCurrent(href) ? 'page' : undefined}
               class:list={[
-                'no-underline hover:underline',
-                isCurrent(href) && 'underline underline-offset-4 font-medium',
+                'navlink relative block py-3.5',
+                isCurrent(href) && 'border-b-2 border-[color:var(--color-accent)]',
               ]}
             >
               {label}
@@ -49,22 +51,26 @@ const isCurrent = (href: string) =>
     </nav>
 
     <!-- Mobile nav (no JS) -->
-    <details class="group mt-4 sm:hidden">
+    <details class="group mt-4 border-t border-[color:var(--color-rule)] sm:hidden">
       <summary
-        class="cursor-pointer list-none rounded border border-[color:var(--color-ink)] px-3 py-1.5 text-sm font-medium"
+        class="flex cursor-pointer list-none items-center justify-between py-3 text-sm font-semibold text-[color:var(--color-ink)]"
       >
-        <span class="group-open:hidden">Menu</span>
-        <span class="hidden group-open:inline">Close</span>
+        <span class="label !text-[color:var(--color-ink-soft)]">Sections</span>
+        <span class="text-[color:var(--color-accent-deep)]">
+          <span class="group-open:hidden">＋</span>
+          <span class="hidden group-open:inline">－</span>
+        </span>
       </summary>
-      <nav class="mt-3" aria-label="Mobile">
-        <ul class="flex flex-col gap-2 text-base">
+      <nav class="pb-3" aria-label="Mobile">
+        <ul class="flex flex-col">
           {links.map(({ href, label }) => (
-            <li>
+            <li class="border-t border-[color:var(--color-rule)]/60">
               <a
                 href={href}
                 aria-current={isCurrent(href) ? 'page' : undefined}
                 class:list={[
-                  isCurrent(href) && 'font-medium',
+                  'navlink block py-2.5 text-base',
+                  isCurrent(href) && 'pl-3 border-l-2 border-[color:var(--color-accent)]',
                 ]}
               >
                 {label}

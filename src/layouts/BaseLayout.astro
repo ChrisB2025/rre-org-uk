@@ -30,10 +30,14 @@ const fullTitle = title.includes(brand) ? title : `${title} | ${brand}`;
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#f7f4ec" />
   </head>
   <body>
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:bg-[color:var(--color-ink)] focus:px-3 focus:py-1.5 focus:text-sm focus:text-[color:var(--color-paper)]">
+      Skip to content
+    </a>
     <Nav />
-    <main class="mx-auto max-w-2xl px-6 py-12 sm:py-16">
+    <main id="main" class="wrap py-14 sm:py-20">
       <slot />
     </main>
     <Footer />
