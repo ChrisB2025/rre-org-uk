@@ -5,7 +5,7 @@ import node from '@astrojs/node';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://rre.org.uk',
+  site: 'https://www.rre.org.uk',
   output: 'static',
   adapter: node({ mode: 'standalone' }),
   // Astro's CSRF origin check reconstructs the request origin from the node
