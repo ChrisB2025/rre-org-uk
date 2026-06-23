@@ -9,7 +9,7 @@ export interface MailerEnv {
   CONTACT_TO?: string;
 }
 
-/** Minimal transport surface we depend on — keeps the code testable. */
+/** Minimal transport surface we depend on, keeps the code testable. */
 export interface MailTransport {
   sendMail(message: Record<string, unknown>): Promise<unknown>;
 }
