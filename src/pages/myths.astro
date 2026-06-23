@@ -1,17 +1,172 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Myth {
+  title: string;
+  assertion?: string;
+  realityLabel: string;
+  reality: string[];
+  list?: string[];
+  charts?: boolean;
+}
+
+const myths: Myth[] = [
+  {
+    title:
+      'The government must first find the money before it can spend, otherwise it will run out of money.',
+    assertion:
+      'The government first collects taxes before it can spend on anything.',
+    realityLabel: 'Reality',
+    reality: [
+      'A currency-issuing government does not need to “find” its own money. It creates pounds when it spends. The real question is not “Can we afford it financially?” but “Do we have the people, skills, materials, technology and ecological capacity to do it?” Money is the public accounting system; real resources are the true constraint.',
+      'Taxes matter enormously, but their main functions are to create demand for the currency, reduce private spending, control inflationary pressure, discourage harmful behaviour, and, if desired, redistribute wealth and income. The state has to spend its own money before the public can get hold of it to pay taxes.',
+    ],
+  },
+  {
+    title: 'Government debt is a burden on our grandchildren.',
+    assertion:
+      'Public debt means we are living beyond our means and passing the bill to future generations.',
+    realityLabel: 'No',
+    reality: [
+      'The UK Government debt is our private sector wealth. One sector’s liability is another sector’s asset. UK government bonds are savings instruments held by pension funds, banks, insurers, overseas investors and the Bank of England. The burden passed to future generations is not the number on the national debt clock, but decayed infrastructure, unaffordable housing, ecological damage, poor health, underinvestment, and wasted human potential.',
+    ],
+  },
+  {
+    title: 'A Government surplus would be good.',
+    assertion: 'A responsible government balances the books. Deficits are harmful.',
+    realityLabel: 'No it doesn’t, and no they aren’t',
+    reality: [
+      'Trying to run a government surplus in the UK would be the first sign of madness. Banks have to have a surplus (positive equity). If the government runs a surplus the whole private sector apart from the banks will have a deficit. Is that what you want? A government deficit must be judged by its results.',
+    ],
+  },
+  {
+    title:
+      'Bonds fund government spending, and Liz Truss crashed the economy, so we must appease the bond markets.',
+    realityLabel: 'No',
+    reality: [
+      'Liz Truss didn’t liaise with the Bank of England before her tax cuts and didn’t understand monetary operations. Pension funds were in trouble before she became PM, and the Bank of England had failed to heed warnings about their risky leveraged investment. Government spending is not operationally funded by bond sales. With a correct understanding of interest rates and monetary operations, the government and Bank of England can see off the “bond vigilantes”.',
+    ],
+  },
+  {
+    title: 'Inflation is caused by too much government spending.',
+    assertion:
+      'If prices rise, it must be because the government has ‘printed’ too much money and spent too much.',
+    realityLabel: 'Real Resource Economics rebuttal',
+    reality: [
+      'Inflation is not simply “too much money.” Prices rise for many reasons: energy shocks, food shortages, monopoly power, supply-chain disruption, rents, interest costs, imported costs, speculative mark-ups, and forward pricing. Government spending can be inflationary if it pushes demand beyond real capacity, but it can also reduce inflation through investment in energy, housing, transport, health, skills and resilience. The question is always: which prices are rising, why, who is setting them, and what real resources are constrained?',
+      'The mainstream has no coherent theory of prices. Real Resource Economics has a more coherent theory of price: it looks at the prices paid by the government when it spends, and at the effect of interest rates on forward pricing.',
+    ],
+  },
+  {
+    title: 'Banks lend out people’s savings.',
+    assertion:
+      'Banks take deposits from savers and lend them to borrowers. Saving must therefore come before investment.',
+    realityLabel: 'This is back to front',
+    reality: [
+      'Commercial banks create new deposits when they issue loans. Lending creates bank money; repayment destroys it. The Bank of England admitted this in 2014; the Bundesbank has a video explaining it.',
+      'Banks are constrained not by a pile of prior savings, but by creditworthy borrowers, capital rules, profitability, regulation, collateral values and central bank settlement systems. This is why banks can produce private credit booms that drive asset bubbles, housing inflation and financial crises. The neglected danger is not public debt, but excessive private debt.',
+    ],
+  },
+  {
+    title:
+      'Economies tend towards equilibrium, provided governments do not intervene.',
+    realityLabel: 'Reality',
+    reality: [
+      'Mainstream equilibrium economists must assume a set of impossible things for their theory to hold (with thanks to Richard Werner):',
+    ],
+    list: [
+      'perfect information',
+      'complete markets',
+      'perfect competition',
+      'instant price adjustment',
+      'zero transaction costs',
+      'no time constraints',
+      'rational profit maximisation',
+      'agents who are not influenced by one another',
+    ],
+  },
+  {
+    title: 'Devaluation just results in inflation.',
+    realityLabel: 'It can, but it often does not',
+    reality: [
+      'The results are context- and country-specific. Historical statistics of significant devaluations over the last hundred years show that economies with a degree of diversity and complexity absorb the rise in import prices, and that if exports increase after the devaluation, five factors kick in to bear down on prices as growth increases. One also has to distinguish between internal devaluation, caused by deliberate wage suppression, which is harmful, and external devaluation, which does not suppress demand and after which real wages can increase.',
+    ],
+  },
+  {
+    title: 'Raising interest rates can control inflation.',
+    realityLabel: 'Facts',
+    reality: [
+      'Across advanced economies over many decades, interest rates follow changes in the CPI, so they cannot be determining the CPI. Over time, inflation rates tend to converge to the interest rate. In recent decades the correlation between inflation and interest rates has been positive: lower interest rates have produced lower inflation, and higher rates have produced higher inflation. The mechanisms causing this are explained in The Money Sham. As regards the UK, the chart below shows that from 1997 to 2026 the R value is -0.06, indicating no meaningful consistent relationship for the period as a whole.',
+      'If you look at certain years you will see periods when interest-rate rises are followed by falling prices, and some when interest-rate rises precede rising prices. You can also observe interest rates flat-lining after the GFC with considerable variations in prices. After Covid it is clear that supply-side issues are driving prices, with interest-rate policy irrelevant or counter-productive.',
+      'In the graphs you can see when CPI changes follow interest-rate changes, when they precede them, and when there is no observable relationship at all. For three of the periods the R value shows a microscopic negative relationship; for one period there is a clear positive correlation. But clearly, if prices follow interest rates, then interest rates cannot be driving prices.',
+    ],
+    charts: true,
+  },
+];
 ---
 
 <BaseLayout
   title="Myths and Fact Check"
-  description="Common myths about money, debt and the UK economy, checked against how money actually works."
+  description="A sample of economic misconceptions that dominate UK thinking, examined in detail in The Money Sham, and set against how money actually works."
 >
   <p class="label">Setting the Record Straight</p>
   <h1 class="mt-3">Myths &amp; Fact Check</h1>
 
-  <p class="lede mt-8">
-    Watch this space. The myths that shape British politics (that the UK is
-    short of money, burdened by government debt, and at the mercy of market
-    forces) will be set against the facts here.
+  <p class="lede mt-8 max-w-[44rem]">
+    A sample of economic misconceptions that dominate UK economic thinking.
+    These myths are examined in detail in <em>The Money Sham</em>.
   </p>
+
+  <div class="mt-14 space-y-14">
+    {myths.map((myth, i) => (
+      <article class="grid gap-x-10 gap-y-4 border-t border-[color:var(--color-rule)] pt-8 sm:grid-cols-[3rem_1fr]">
+        <p class="display text-3xl font-semibold text-[color:var(--color-accent)] tabular-nums">
+          {String(i + 1).padStart(2, '0')}
+        </p>
+        <div class="max-w-[44rem]">
+          <h2 class="!mt-0 text-xl text-[color:var(--color-ink)]">
+            Myth: {myth.title}
+          </h2>
+
+          {myth.assertion && (
+            <p class="mt-3 text-[color:var(--color-ink-soft)]">
+              <span class="label !text-[color:var(--color-ink-soft)]">Assertion</span>
+              <span class="mt-1 block italic">{myth.assertion}</span>
+            </p>
+          )}
+
+          <div class="mt-5 border-l-2 border-[color:var(--color-accent)] pl-5">
+            <p class="label !text-[color:var(--color-accent-deep)]">{myth.realityLabel}</p>
+            {myth.reality.map((para) => (
+              <p class="mt-2">{para}</p>
+            ))}
+            {myth.list && (
+              <ul class="ml-5 mt-3 list-disc space-y-1 marker:text-[color:var(--color-accent)]">
+                {myth.list.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            )}
+            {myth.list && (
+              <p class="mt-3">
+                Only after assuming this fantasy world can the theory conclude
+                that markets naturally clear, that prices produce efficient
+                outcomes, and that government intervention is a distortion. In
+                reality, information is imperfect, time matters, firms and banks
+                have power, prices do not instantly adjust, credit is rationed,
+                and people copy, panic and speculate. An economy should not be
+                expected to sit naturally in equilibrium: it is shaped by
+                quantities, constraints, institutions, credit creation and power.
+              </p>
+            )}
+            {myth.charts && (
+              <p class="mt-4 border border-dashed border-[color:var(--color-rule)] bg-[color:var(--color-paper-2)] px-4 py-3 text-sm text-[color:var(--color-ink-soft)]">
+                Interest-rate and CPI charts to be added (five graphs supplied separately by Steve).
+              </p>
+            )}
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
 </BaseLayout>

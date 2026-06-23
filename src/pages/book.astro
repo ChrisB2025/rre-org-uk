@@ -2,7 +2,39 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTAButton from '../components/CTAButton.astro';
 
-const lolaUrl = 'https://www.lolabooks.eu/products/the-money-sham-stephen-laughton';
+const waterstonesUrl =
+  'https://www.waterstones.com/book/the-money-sham/stephen-laughton/9783982879901';
+
+const endorsements = [
+  {
+    quote:
+      'The Money Sham is a sharp, accessible, and genuinely important contribution to our understanding of money and the monetary system. Laughton has done the hard work of synthesizing some of the most rigorous heterodox thinking available and translating it into something that will open eyes and, hopefully, change minds.',
+    name: 'Professor Stephanie Kelton',
+  },
+  {
+    quote:
+      'We all need to know how the monetary and production systems of our economy work, because conventional economists have filled our heads with nonsense ideas. Stephen Laughton explains the real basics of money and production in language that any reader can understand. Throw those delusional textbooks away and read this.',
+    name: 'Professor Steve Keen',
+  },
+  {
+    quote:
+      'Kudos to Steve Laughton for this eminently readable and genuinely helpful new book. He rightly draws attention away from government debt and toward private sector debt, which when used in excess, is the true culprit in financial crises. This succinct overview of macroeconomics will be a useful guide for those new to economic theory, and will provide invaluable clarification to even veteran economic analysts.',
+    name: 'Richard Vague',
+    note: 'American economist, author and venture capitalist, formerly Pennsylvania’s Secretary of Banking and Securities — July 2025',
+  },
+  {
+    quote:
+      'The concept of money is a modern malady and every disease needs its vaccine, every poison its antidote; read The Money Sham and start to feel better.',
+    name: 'Professor Jamie Morgan',
+    note: 'Co-editor, Real World Economics Review',
+  },
+  {
+    quote:
+      'Stephen Laughton is a philosophical economist, critical of mainstream economic thinking. He played a vital role in editing my 2017 book Britain’s Achilles Heel, providing a clear understanding of contentious economic issues. The UK, like much of the West, is experiencing avoidably high levels of underemployment, lack of investment and economic stagnation. This has disproportionately impacted those on median incomes and below and led to the rise of right-wing populism. The current Labour Government has so far shown an inadequate understanding of the policies that need to be put in place to achieve its avowed aim of economic growth. Laughton’s wide-ranging analysis explains why austerity-lite is politically and economically flawed. I would strongly recommend his work to would-be economists and policy makers alike.',
+    name: 'John Mills',
+    note: 'Author of A Critical History of Economics, economist, founder of JML Limited, lifelong Labour Party supporter (1938–2025) — January 2025',
+  },
+];
 ---
 
 <BaseLayout
@@ -15,7 +47,7 @@ const lolaUrl = 'https://www.lolabooks.eu/products/the-money-sham-stephen-laught
   <div class="mt-12 grid gap-10 sm:grid-cols-[240px_1fr] sm:gap-14">
     <!-- Cover + facts rail -->
     <aside class="sm:sticky sm:top-8 sm:self-start">
-      <a href={lolaUrl} target="_blank" rel="noopener noreferrer" class="block no-underline">
+      <a href={waterstonesUrl} target="_blank" rel="noopener noreferrer" class="block no-underline">
         <img
           src="/book-cover.png"
           alt="Cover of The Money Sham by Stephen Laughton"
@@ -46,19 +78,34 @@ const lolaUrl = 'https://www.lolabooks.eu/products/the-money-sham-stephen-laught
       </dl>
 
       <div class="mt-7">
-        <CTAButton href={lolaUrl} external>Buy from Lola Books</CTAButton>
+        <CTAButton href={waterstonesUrl} external>Buy from Waterstones</CTAButton>
       </div>
     </aside>
 
     <!-- Synopsis -->
     <div>
       <p class="lede dropcap !mt-0">
-        <em>The Money Sham</em> is not just a theoretical exploration of “what
-        money is.” It is a political-economic history of how misunderstandings
-        about money have derailed all the well-intentioned attempts to solve the
-        problems we face. The book reveals a persistent pattern in which flawed
-        ideas about money, a child-like Piggynomics framework, have guided
-        policy decisions across generations.
+        Rising prices, ‘eat or heat’, lengthy hospital waiting lists,
+        unaffordable housing, mounting unemployment, stagnant investment, ill
+        health, nurses at food banks, low wages, depression and despair, not to
+        mention extreme heat and flooding … an incomplete list of the ills that
+        so many face in the UK today.
+      </p>
+      <p>
+        <em>The Money Sham</em> explains how a fundamental misconception about
+        money leaves politicians, the media and the public trapped within a
+        bankrupt economic philosophy. We are told the UK is short of money,
+        burdened by government debt and at the mercy of market forces that must
+        be appeased at all costs. These myths shape British politics, foster
+        division and despair, enrich the 1% and leave the rest of us behind.
+        (<a href="/myths">See Myths and Fact Check</a>.)
+      </p>
+      <p>
+        This is not just a theoretical exploration of “what money is.” It is a
+        political–economic history of how flawed ideas about money have derailed
+        all attempts to solve the problems we face. The book reveals a persistent
+        pattern: a child-like <em>Piggynomics</em> framework has guided policy
+        decisions across generations.
       </p>
       <p>
         The book exposes a hidden continuity from Isaac Newton’s monetary
@@ -67,26 +114,50 @@ const lolaUrl = 'https://www.lolabooks.eu/products/the-money-sham-stephen-laught
         those of the Banking School and the eventual triumph of neo-liberal
         economics has driven the most consequential policy mistakes, contributing
         to crises, stagnation, instability, and avoidable social and economic
-        pressures.
+        harm.
       </p>
       <p>
-        At a moment when the UK faces chronic under-investment, unaffordable
-        housing, crumbling services, stagnant productivity and rising social
-        stress and division, Labour has embraced the same failed assumptions that
-        have constrained governments for decades: that the state must “find the
-        money” before it can act; that markets must not be ‘spooked’; and that
-        Public Purpose must always be subordinated to bond markets.
-        <em>The Money Sham</em> dismantles these assumptions, exposing the flawed
-        premises underlying the Bank of England’s public explanations of money,
-        the austerity narrative, and the belief that the government must borrow
-        its own money before it can spend.
+        At a moment of rising social stress and division, Labour has embraced the
+        same failed assumptions that have constrained governments for decades:
+        that the state must “find the money” before it can act; that markets must
+        not be ‘spooked’; and that Public Purpose must always be subordinated to
+        bond markets. It’s a small consolation that we are not alone; across
+        Europe political parties have put their necks in a similar noose.
       </p>
       <p>
-        <em>The Money Sham</em> offers a clear account of the country’s current
-        crisis, alongside a concrete evidence-based programme for renewal,
+        <em>The Money Sham</em> dismantles conventional wisdom, exposing the
+        flawed premises underlying the Bank of England’s public explanations of
+        money, the austerity narrative, and the belief that the government must
+        borrow its own money before it can spend. It shows how these economic
+        myths took hold, why they still dominate both left and right, and how
+        they can be replaced by a practical framework for rebuilding a fair,
+        prosperous and sustainable UK. It offers a clear account of the country’s
+        current crisis, alongside a concrete evidence-based programme for renewal,
         grounded in monetary realism, real-resource economics, and the practical
         realities of British institutions.
       </p>
     </div>
   </div>
+
+  <hr class="my-14 border-[color:var(--color-rule)]" />
+
+  <section>
+    <p class="label">Praise for the book</p>
+    <h2 class="mt-2 text-2xl">Endorsements</h2>
+    <div class="mt-8 space-y-8">
+      {endorsements.map((e) => (
+        <figure class="border-l-2 border-[color:var(--color-accent)] pl-5 sm:pl-6">
+          <blockquote class="display text-[1.05rem] italic leading-relaxed text-[color:var(--color-ink)]">
+            “{e.quote}”
+          </blockquote>
+          <figcaption class="mt-3 text-sm">
+            <span class="font-semibold text-[color:var(--color-ink)]">{e.name}</span>
+            {e.note && (
+              <span class="block text-[color:var(--color-ink-soft)]">{e.note}</span>
+            )}
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
 </BaseLayout>
