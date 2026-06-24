@@ -1,13 +1,19 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+interface ChartImage {
+  src: string;
+  alt: string;
+  caption: string;
+}
+
 interface Myth {
   title: string;
   assertion?: string;
   realityLabel: string;
   reality: string[];
   list?: string[];
-  charts?: boolean;
+  chartImages?: ChartImage[];
 }
 
 const myths: Myth[] = [
@@ -100,7 +106,28 @@ const myths: Myth[] = [
       'If you look at certain years you will see periods when interest-rate rises are followed by falling prices, and some when interest-rate rises precede rising prices. You can also observe interest rates flat-lining after the GFC with considerable variations in prices. After Covid it is clear that supply-side issues are driving prices, with interest-rate policy irrelevant or counter-productive.',
       'In the graphs you can see when CPI changes follow interest-rate changes, when they precede them, and when there is no observable relationship at all. For three of the periods the R value shows a microscopic negative relationship; for one period there is a clear positive correlation. But clearly, if prices follow interest rates, then interest rates cannot be driving prices.',
     ],
-    charts: true,
+    chartImages: [
+      {
+        src: '/charts/sonia-cpi-1997-2026.png',
+        alt: 'Line chart comparing UK CPI inflation and the SONIA interest rate from 1997 to 2026',
+        caption: 'SONIA vs CPI, 1997–2026 · correlation r = -0.06 · Source: Bank of England, ONS',
+      },
+      {
+        src: '/charts/sonia-cpi-2007-2010.jpg',
+        alt: 'Line chart comparing UK CPI inflation and the SONIA interest rate from 2007 to 2010',
+        caption: 'SONIA vs CPI, 2007–2010 · correlation r = 0.03 · Source: Bank of England, ONS',
+      },
+      {
+        src: '/charts/sonia-cpi-2011-2020.jpg',
+        alt: 'Line chart comparing UK CPI inflation and the SONIA interest rate from 2011 to 2020',
+        caption: 'SONIA vs CPI, 2011–2020 · correlation r = 0.24 · Source: Bank of England, ONS',
+      },
+      {
+        src: '/charts/sonia-cpi-2021-2026.jpg',
+        alt: 'Line chart comparing UK CPI inflation and the SONIA interest rate from 2021 to 2026',
+        caption: 'SONIA vs CPI, 2021–2026 · correlation r = -0.09 · Source: Bank of England, ONS',
+      },
+    ],
   },
 ];
 ---
@@ -159,10 +186,22 @@ const myths: Myth[] = [
                 quantities, constraints, institutions, credit creation and power.
               </p>
             )}
-            {myth.charts && (
-              <p class="mt-4 border border-dashed border-[color:var(--color-rule)] bg-[color:var(--color-paper-2)] px-4 py-3 text-sm text-[color:var(--color-ink-soft)]">
-                Interest-rate and CPI charts to be added (five graphs supplied separately by Steve).
-              </p>
+            {myth.chartImages && (
+              <div class="mt-6 space-y-6">
+                {myth.chartImages.map((c) => (
+                  <figure>
+                    <img
+                      src={c.src}
+                      alt={c.alt}
+                      loading="lazy"
+                      class="w-full border border-[color:var(--color-rule)] bg-[color:var(--color-paper)]"
+                    />
+                    <figcaption class="mt-2 text-sm text-[color:var(--color-ink-soft)]">
+                      {c.caption}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
             )}
           </div>
         </div>
