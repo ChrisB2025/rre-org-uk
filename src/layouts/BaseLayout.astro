@@ -16,6 +16,7 @@ const {
 } = Astro.props;
 
 const fullTitle = title.includes(brand) ? title : `${title} | ${brand}`;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <!doctype html>
@@ -30,6 +31,8 @@ const fullTitle = title.includes(brand) ? title : `${title} | ${brand}`;
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <link rel="canonical" href={canonical} />
     <meta name="theme-color" content="#f7f4ec" />
   </head>
   <body>
