@@ -3,9 +3,11 @@ interface Props {
   href: string;
   external?: boolean;
   variant?: 'solid' | 'outline';
+  event?: string;
+  eventData?: Record<string, string>;
 }
 
-const { href, external = false, variant = 'solid' } = Astro.props;
+const { href, external = false, variant = 'solid', event, eventData = {} } = Astro.props;
 
 const base =
   'group inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold no-underline tracking-wide transition-all duration-150';
@@ -19,9 +21,20 @@ const styles = {
 const externalAttrs = external
   ? { target: '_blank', rel: 'noopener noreferrer' }
   : {};
+
+// Umami custom event: any element with data-umami-event is tracked on click,
+// with data-umami-event-<key> attributes recorded as event properties.
+const eventAttrs = event
+  ? {
+      'data-umami-event': event,
+      ...Object.fromEntries(
+        Object.entries(eventData).map(([key, value]) => [`data-umami-event-${key}`, value]),
+      ),
+    }
+  : {};
 ---
 
-<a href={href} class:list={[base, styles[variant]]} {...externalAttrs}>
+<a href={href} class:list={[base, styles[variant]]} {...externalAttrs} {...eventAttrs}>
   <slot />
   <span aria-hidden="true" class="transition-transform duration-150 group-hover:translate-x-0.5">→</span>
 </a>

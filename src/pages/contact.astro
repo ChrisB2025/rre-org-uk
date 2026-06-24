@@ -94,6 +94,7 @@ const field =
         if (res.ok && data.ok) {
           form.reset();
           setStatus('Thank you. Your message has been sent.');
+          (window as unknown as { umami?: { track: (e: string) => void } }).umami?.track('contact-submit');
         } else {
           setStatus('Sorry, that didn’t send. Please check your details and try again.');
         }

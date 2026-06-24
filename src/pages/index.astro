@@ -108,7 +108,7 @@ const waterstonesUrl =
   </div>
 
   <div class="rise rise-4 mt-9 flex flex-wrap gap-3">
-    <CTAButton href={waterstonesUrl} external>
+    <CTAButton href={waterstonesUrl} external event="buy-book" eventData={{ location: 'home-hero' }}>
       Read the Book
     </CTAButton>
     <CTAButton href="/policies" variant="outline">
@@ -165,7 +165,7 @@ const waterstonesUrl =
         The concepts within Real Resource Economics are explored in
         <em>The Money Sham</em>. They are complemented by the work of the MMTUK
         Policy Research Group; see
-        <a href="https://mmtuk.org" target="_blank" rel="noopener noreferrer">mmtuk.org</a>
+        <a href="https://mmtuk.org" target="_blank" rel="noopener noreferrer" data-umami-event="outbound-mmtuk" data-umami-event-location="home-body">mmtuk.org</a>
         for policy papers and briefings.
       </p>
     </div>

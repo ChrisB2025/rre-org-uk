@@ -34,6 +34,15 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta property="og:url" content={canonical} />
     <link rel="canonical" href={canonical} />
     <meta name="theme-color" content="#f7f4ec" />
+    <!-- Umami analytics (privacy-friendly, cookieless). data-domains keeps
+         dev/preview traffic out of the stats. -->
+    <script
+      is:inline
+      defer
+      src="https://umami-production-7481.up.railway.app/script.js"
+      data-website-id="5b7072a2-b13a-4614-85b6-51a52126ea3b"
+      data-domains="rre.org.uk,www.rre.org.uk"
+    ></script>
   </head>
   <body>
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-3 focus:z-50 focus:bg-[color:var(--color-ink)] focus:px-3 focus:py-1.5 focus:text-sm focus:text-[color:var(--color-paper)]">

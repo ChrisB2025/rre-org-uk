@@ -44,6 +44,8 @@ const thumbHq = (id: string) => `https://img.youtube.com/vi/${id}/hqdefault.jpg`
           rel="noopener noreferrer"
           class="group block no-underline"
           aria-label={`Watch on YouTube: ${v.title}`}
+          data-umami-event="play-video"
+          data-umami-event-title={v.title}
         >
           <div class="relative aspect-video overflow-hidden border border-[color:var(--color-rule)] bg-[color:var(--color-paper-2)]">
             <img

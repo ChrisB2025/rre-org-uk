@@ -47,7 +47,7 @@ const endorsements = [
   <div class="mt-12 grid gap-10 sm:grid-cols-[240px_1fr] sm:gap-14">
     <!-- Cover + facts rail -->
     <aside class="sm:sticky sm:top-8 sm:self-start">
-      <a href={waterstonesUrl} target="_blank" rel="noopener noreferrer" class="block no-underline">
+      <a href={waterstonesUrl} target="_blank" rel="noopener noreferrer" class="block no-underline" data-umami-event="buy-book" data-umami-event-location="book-cover">
         <img
           src="/book-cover.png"
           alt="Cover of The Money Sham by Stephen Laughton"
@@ -78,7 +78,7 @@ const endorsements = [
       </dl>
 
       <div class="mt-7">
-        <CTAButton href={waterstonesUrl} external>Buy from Waterstones</CTAButton>
+        <CTAButton href={waterstonesUrl} external event="buy-book" eventData={{ location: 'book-page' }}>Buy from Waterstones</CTAButton>
       </div>
     </aside>
 
