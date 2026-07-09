@@ -66,6 +66,7 @@ const thumbHq = (id: string) => `https://img.youtube.com/vi/${id}/hqdefault.jpg`
               src={thumbMax(v.youtubeId)}
               data-fallback={thumbHq(v.youtubeId)}
               onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;this.dataset.fallback='';}"
+              onload="if(this.naturalWidth===120&&this.dataset.fallback){this.src=this.dataset.fallback;this.dataset.fallback='';}"
               alt={`Thumbnail for ${v.title}`}
               width="1280"
               height="720"
