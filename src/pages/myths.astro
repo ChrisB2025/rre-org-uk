@@ -14,6 +14,7 @@ interface Myth {
   reality: string[];
   list?: string[];
   chartImages?: ChartImage[];
+  readMore?: { text: string; label: string; href: string };
 }
 
 const myths: Myth[] = [
@@ -52,6 +53,11 @@ const myths: Myth[] = [
     reality: [
       'Liz Truss didn’t liaise with the Bank of England before her tax cuts and didn’t understand monetary operations. Pension funds were in trouble before she became PM, and the Bank of England had failed to heed warnings about their risky leveraged investment. Government spending is not operationally funded by bond sales. With a correct understanding of interest rates and monetary operations, the government and Bank of England can see off the “bond vigilantes”.',
     ],
+    readMore: {
+      text: 'We should control, not fear, the bond markets — read this piece by',
+      label: 'Neil Wilson',
+      href: 'https://new-wayland.com/blog/munchau-bond-vigilantes-burnhamomics/',
+    },
   },
   {
     title: 'Inflation is caused by too much government spending.',
@@ -167,6 +173,19 @@ const myths: Myth[] = [
             {myth.reality.map((para) => (
               <p class="mt-2">{para}</p>
             ))}
+            {myth.readMore && (
+              <p class="mt-2">
+                {myth.readMore.text}{' '}
+                <a
+                  href={myth.readMore.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="underline hover:text-[color:var(--color-accent-deep)]"
+                >
+                  {myth.readMore.label}
+                </a>.
+              </p>
+            )}
             {myth.list && (
               <ul class="ml-5 mt-3 list-disc space-y-1 marker:text-[color:var(--color-accent)]">
                 {myth.list.map((item) => (
