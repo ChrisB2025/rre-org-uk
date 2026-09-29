@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { buildContactMessage, sendContactEmail, WEBMAIL_URL, type MailerEnv } from './mailer';
+import { buildContactMessage, sendContactEmail, CONTACT_FOOTER, type MailerEnv } from './mailer';
 
 const env: MailerEnv = {
   SMTP_HOST: 'smtp.migadu.com',
@@ -22,10 +22,10 @@ describe('buildContactMessage', () => {
     expect(msg.text).toContain('ada@example.com');
   });
 
-  it('tells Steve to reply from webmail as the rre mailbox', () => {
+  it('ends with the neutral contact-form signature', () => {
     const msg = buildContactMessage(input, env);
-    expect(msg.text).toContain(WEBMAIL_URL);
-    expect(msg.text).toContain('steve@rre.org.uk');
+    expect(msg.text.endsWith(CONTACT_FOOTER)).toBe(true);
+    expect(msg.text).not.toContain('webmail');
   });
 });
 
