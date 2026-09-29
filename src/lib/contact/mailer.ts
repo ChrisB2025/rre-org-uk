@@ -24,13 +24,18 @@ export function createTransport(env: MailerEnv): Transporter {
   });
 }
 
+/** Where Steve replies as the rre.org.uk mailbox, rather than from the Gmail notification copy. */
+export const WEBMAIL_URL = 'https://webmail.migadu.com';
+
 export function buildContactMessage(input: ContactInput, env: MailerEnv) {
   return {
     from: `"RRE Contact" <${env.SMTP_USER}>`,
     to: env.CONTACT_TO,
     replyTo: input.email,
     subject: `Contact form: ${input.name}`,
-    text: `Name: ${input.name}\nEmail: ${input.email}\n\n${input.message}\n`,
+    text:
+      `Name: ${input.name}\nEmail: ${input.email}\n\n${input.message}\n\n` +
+      `-- \nReply from ${WEBMAIL_URL} (${env.CONTACT_TO}) so your reply comes from the RRE address.\n`,
   };
 }
 
