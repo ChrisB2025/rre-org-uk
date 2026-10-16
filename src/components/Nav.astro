@@ -2,14 +2,14 @@
 const { pathname } = Astro.url;
 
 const links = [
-  { href: '/',         label: 'Home' },
-  { href: '/book',     label: 'The Money Sham' },
-  { href: '/policies', label: '7 Policies' },
-  { href: '/videos',   label: 'Videos' },
-  { href: '/glossary', label: 'Economic Jargon' },
-  { href: '/myths',    label: 'Myths & Fact Check' },
-  { href: '/mmtuk',    label: 'MMTUK' },
-  { href: '/contact',  label: 'Contact' },
+  { href: '/',          label: 'Home' },
+  { href: '/book/',     label: 'The Money Sham' },
+  { href: '/policies/', label: '7 Policies' },
+  { href: '/videos/',   label: 'Videos' },
+  { href: '/glossary/', label: 'Economic Jargon' },
+  { href: '/myths/',    label: 'Myths & Fact Check' },
+  { href: '/mmtuk/',    label: 'MMTUK' },
+  { href: '/contact/',  label: 'Contact' },
 ];
 
 const isCurrent = (href: string) =>

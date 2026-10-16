@@ -41,17 +41,17 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
   // Silent spam drops: look successful to the client, send nothing.
   const renderedAt = typeof raw.ts === 'string' && raw.ts ? Number(raw.ts) : null;
   if (isHoneypotTripped(raw) || isTooFast(renderedAt, Date.now())) {
-    return asJson ? json({ ok: true }, 200) : redirect('/contact?sent=1');
+    return asJson ? json({ ok: true }, 200) : redirect('/contact/?sent=1');
   }
 
   const ip = clientAddress ?? 'unknown';
   if (!limiter.allow(ip, Date.now())) {
-    return asJson ? json({ ok: false, error: 'rate_limited' }, 429) : redirect('/contact?error=1');
+    return asJson ? json({ ok: false, error: 'rate_limited' }, 429) : redirect('/contact/?error=1');
   }
 
   const result = validateContact(raw);
   if (!result.valid || !result.data) {
-    return asJson ? json({ ok: false, errors: result.errors }, 400) : redirect('/contact?error=1');
+    return asJson ? json({ ok: false, errors: result.errors }, 400) : redirect('/contact/?error=1');
   }
 
   const env = process.env as unknown as MailerEnv;
@@ -59,8 +59,8 @@ export const POST: APIRoute = async ({ request, clientAddress }) => {
     await sendContactEmail(createTransport(env), result.data, env);
   } catch (err) {
     console.error('[contact] send failed:', err);
-    return asJson ? json({ ok: false, error: 'send_failed' }, 500) : redirect('/contact?error=1');
+    return asJson ? json({ ok: false, error: 'send_failed' }, 500) : redirect('/contact/?error=1');
   }
 
-  return asJson ? json({ ok: true }, 200) : redirect('/contact?sent=1');
+  return asJson ? json({ ok: true }, 200) : redirect('/contact/?sent=1');
 };

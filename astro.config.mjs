@@ -7,6 +7,10 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://www.rre.org.uk',
   output: 'static',
+  // Canonical URLs, the sitemap and Google's index all use the trailing-slash
+  // form (/book/), so internal links must too. The node server 301s /book to
+  // /book/ so older links keep working.
+  trailingSlash: 'always',
   adapter: node({ mode: 'standalone' }),
   // Astro's CSRF origin check reconstructs the request origin from the node
   // server, which sits behind Railway's TLS-terminating proxy, so a legitimate

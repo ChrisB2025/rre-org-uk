@@ -2,16 +2,21 @@
 import { marked } from 'marked';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import glossaryData from '../data/glossary.json';
+import { uniqueSlugs } from '../lib/slug';
 
 interface Entry {
   term: string;
   definition: string;
   todo: boolean;
+  id: string;
 }
 
 marked.setOptions({ gfm: true });
 
-const entries: Entry[] = glossaryData.entries;
+// Each entry gets a stable fragment (/glossary/#sectoral-balances) so articles,
+// myths and policies can link straight to a definition.
+const ids = uniqueSlugs(glossaryData.entries.map((e) => e.term));
+const entries: Entry[] = glossaryData.entries.map((e, i) => ({ ...e, id: ids[i] }));
 const note: string = glossaryData.note;
 const overviewTitle: string = glossaryData.overviewTitle;
 const overviewHtml: string = marked.parse(glossaryData.overview) as string;
@@ -29,8 +34,8 @@ const letters = Object.keys(grouped).sort();
 ---
 
 <BaseLayout
-  title="Economic Jargon – Glossary"
-  description="A plain-language glossary of economics and Modern Monetary Theory terms, from The Money Sham by Stephen Laughton."
+  title="Economic Jargon: A Plain-English Economics Glossary"
+  description={`Economic jargon explained: plain-English definitions of ${entries.length} economics and Modern Monetary Theory terms, from inflation, QE and gilts to sectoral balances.`}
 >
   <p class="label">Reference</p>
   <h1 class="mt-3">Economic Jargon</h1>
@@ -73,9 +78,14 @@ const letters = Object.keys(grouped).sort();
         </h2>
         <dl class="mt-7 space-y-8">
           {grouped[letter].map((entry) => (
-            <div>
+            <div id={entry.id} class="entry scroll-mt-16">
               <dt class="display text-[1.2rem] font-semibold text-[color:var(--color-ink)]">
                 {entry.term}
+                <a
+                  href={`#${entry.id}`}
+                  class="entry-link ml-1.5 font-normal no-underline text-[color:var(--color-accent)]"
+                  aria-label={`Link to ${entry.term}`}
+                >#</a>
               </dt>
               <dd class:list={[
                 'prose-glossary mt-1.5',
@@ -90,6 +100,19 @@ const letters = Object.keys(grouped).sort();
 </BaseLayout>
 
 <style>
+  /* Per-entry permalink: revealed on hover/focus so the list stays quiet. */
+  .entry-link { opacity: 0; transition: opacity 140ms ease; }
+  .entry:hover .entry-link,
+  .entry-link:focus-visible { opacity: 1; }
+  @media (hover: none) { .entry-link { opacity: 0.5; } }
+
+  /* Mark the entry a visitor arrived at via a #fragment link. */
+  .entry:target {
+    margin-left: -1rem;
+    padding-left: calc(1rem - 2px);
+    border-left: 2px solid var(--color-accent);
+  }
+
   /* Prose styling for Markdown-rendered glossary content. */
   .prose-glossary :global(p) {
     margin-top: 0.75rem;
